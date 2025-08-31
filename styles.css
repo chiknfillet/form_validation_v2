@@ -35,9 +35,28 @@ body, html {
     grid-template-rows: 1fr 1fr;
 }
 
+input {
+    background-color: white;
+    border: 2px solid black;
+}
+
+input.touched:valid {
+  background-color: lightgreen;
+  border: 2px solid green;
+}
+
+input.touched:invalid {
+    background-color: lightcoral;
+    border: 2px solid red;
+}
+
 .error {
     grid-column: 2 / 3;
     position: relative;
+}
+
+.error.active {
+    color: red;
 }
 
 label::after {

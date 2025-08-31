@@ -13,6 +13,7 @@ inputs.forEach(input => {
     const errorSpan = input.nextElementSibling;
     input.addEventListener('input', () => {
         validateField(input, errorSpan);
+        input.classList.add("touched");
     });
 });
 
@@ -20,8 +21,12 @@ function validateFields() {
     let allFieldsValid = true;
     inputs.forEach(input => {
         const errorSpan = input.nextElementSibling;
-        if (!validateField(input, errorSpan)) {
+        const isValid = validateField(input, errorSpan)
+        if (!isValid) {
             allFieldsValid = false;
+            errorSpan.classList.remove('active')
+        } else {
+            errorSpan.classList.add('active')
         }
     });
     return allFieldsValid;
@@ -42,7 +47,6 @@ function validateField(input, errorSpan) {
         return false;
     } else {
         errorSpan.textContent = '';
-        errorSpan.className = 'error';
         return true;
     }
 }
